@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Formulaire Statique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Bilan des connaissances</h2>
+        <p>Veuillez remplir ce formulaire pour valider le module.</p>
+        
+        <!-- Remplacez l'URL d'action par votre endpoint (ex: Web3Forms, Netlify ou Google Apps Script) -->
+        <!-- Par défaut, nous mettons l'URL de test de Web3Forms -->
+        <form action="https://api.web3forms.com/submit" method="POST">
+            
+            <!-- Si vous utilisez Web3Forms, décommentez la ligne ci-dessous et ajoutez votre clé d'accès obtenue sur leur site -->
+            <!-- <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS_ICI"> -->
+
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+            </div>
+
+            <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+            </div>
+
+            <div class="form-group">
+                <label for="question1">1. Cite les 5 étapes du cycle managérial.</label>
+                <textarea id="question1" name="question1" rows="3" required placeholder="Votre réponse..."></textarea>
+            </div>
+
+            <button type="submit">Envoyer les réponses</button>
+        </form>
+    </div>
+</body>
+</html>
