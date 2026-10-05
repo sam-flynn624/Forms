@@ -13,10 +13,8 @@
         
         <!-- Remplacez l'URL d'action par votre endpoint (ex: Web3Forms, Netlify ou Google Apps Script) -->
         <!-- Par défaut, nous mettons l'URL de test de Web3Forms -->
-        <form action="https://api.web3forms.com/submit" method="POST">
+        <form id="monFormulaire">
             
-            <!-- Si vous utilisez Web3Forms, décommentez la ligne ci-dessous et ajoutez votre clé d'accès obtenue sur leur site -->
-            <!-- <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS_ICI"> -->
 
             <div class="form-group">
                 <label for="nom">Nom</label>
@@ -36,5 +34,29 @@
             <button type="submit">Envoyer les réponses</button>
         </form>
     </div>
+    <script>
+    const form = document.getElementById('monFormulaire');
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Empêche la page de recharger
+        
+        const btn = form.querySelector('button');
+        btn.innerText = "Envoi en cours..."; // Fait patienter l'utilisateur
+        
+        
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxgLIW1kXyvSXIYvXETsguP6WwgZWxYBvoDrO6nOcgr0UxJq7I5EiP0ZsiTZumye3ig/exec';
+        
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => {
+                alert("Super ! Vos réponses ont bien été enregistrées."); // Message de succès
+                form.reset(); // Vide le formulaire
+                btn.innerText = "Envoyer les réponses"; // Remet le bouton à la normale
+            })
+            .catch(error => {
+                alert("Erreur lors de l'envoi.");
+                btn.innerText = "Envoyer les réponses";
+            });
+    });
+</script>
 </body>
 </html>
